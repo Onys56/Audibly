@@ -24,9 +24,17 @@ jobs:
 
       - name: Restore
         run: msbuild Audibly.sln /t:Restore /p:Configuration=Release /p:Platform=x64
-
       - name: Build unpackaged Audibly
-        run: msbuild Audibly.sln /t:Publish /p:WindowsPackageType=None /p:Configuration=Release /p:Platform=x64
+        run: >
+          msbuild Audibly.sln
+          /t:Publish
+          /p:WindowsPackageType=None
+          /p:Configuration=Release
+          /p:Platform=x64
+          /p:SentryUploadSymbols=false
+          /p:SentryUploadSources=false
+          /p:SentrySetCommits=false
+          /p:SentryCreateRelease=false
 
       - name: Create ZIP
         shell: powershell
