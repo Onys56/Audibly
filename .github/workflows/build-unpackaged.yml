@@ -19,6 +19,9 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
+      - name: Add CommunityToolkit Labs NuGet feed
+        run: dotnet nuget add source https://pkgs.dev.azure.com/dotnet/CommunityToolkit/_packaging/CommunityToolkit-Labs/nuget/v3/index.json --name CommunityToolkit-Labs
+
       - name: Restore
         run: msbuild Audibly.sln /t:Restore /p:Configuration=Release /p:Platform=x64
 
